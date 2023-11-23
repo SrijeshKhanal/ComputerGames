@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Contact Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+    </style>
+    <link rel="stylesheet" href="contact-form.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="contactInfo">
+
+                <div>
+                    <h2>Contact Info</h2>
+                    <ul class="info">
+                        <li>
+                            <span><img src="images/contact-form/location.png"></span>
+                            <span>121 Burnel Rd<br>
+                                Mississauga, ON<br>
+                                L4Z 3E9</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span><img src="images/contact-form/mail.png"></span>
+
+                            <span><a href="mailto: support@computergames.com">support@computergames.com</a></span>
+                        </li>
+                        <li>
+                            <span><img src="images/contact-form/call.png"></span>
+                            <span>(905) 890-7833</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <ul class="sci">
+                    <li><a href="https://www.facebook.com/"><img src="images/contact-form/1.png"></a></li>
+                    <li><a href="https://www.instagram.com/"><img src="images/contact-form/3.png"></a></li>
+                    <li><a href="https://twitter.com/"><img src="images/contact-form/2.png"></a></li>
+                    <li><a href="https://www.linkedin.com/"><img src="images/contact-form/5.png"></a></li>
+
+                </ul>
+            </div>
+            <div class="contactForm">
+                <h2>Send a Message</h2>
+                <form onsubmit="return validateForm()">
+                    <div class="formBox">
+
+
+                        <div class="inputBox w50">
+                            <input id="firstName" type="text" required>
+                            <span>First Name *</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input id="lastName" type="text" required>
+                            <span>Last Name *</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input id="email" type="email" required>
+                            <span>Email Address *</span>
+                        </div>
+
+                        <div class="inputBox w100">
+                            <textarea id="message" required></textarea>
+                            <span>Write your message here...</span>
+                        </div>
+                        <div>
+
+                            <label><input type="radio" name="messageType" value="feedback" required> Feedback</label>
+
+
+                            <label><input type="radio" name="messageType" value="issue" required> Report a bug</label>
+
+
+                            <label><input type="radio" name="messageType" value="newGameRequest" required> Game
+                                Request</label>
+                        </div>
+                        <div class="inputBox w100">
+                            <input type="submit" value="Send">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+    </section>
+    <script src="contact-form.js"></script>
+</body>
+
+</html>

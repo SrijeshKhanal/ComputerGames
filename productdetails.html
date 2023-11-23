@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="responsive-style.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-eMNCOOHTQPao/8R+s1s54rtIaC3IOdLv+k8iR6LHXl5t8bw1iKTQ98tPrXUkwZT" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    
+    <title>Product Details</title>
+    <style>
+        .back-to-products-btn {
+            position: fixed;
+            bottom: 7px;
+            left: 20px;
+            z-index: 999;
+        }
+
+        #continueToCartContainer {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Product Detail Start -->
+    <div id="prodetail" class="detail-section">
+        <!-- Left Section For Product Image START -->
+        <div class="single-pro-image">
+            <img src="" width="100%" id="MainImg" alt="">
+            <!-- Other Small Images -->
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" onclick="changeMainImage(0)">
+                </div>
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" onclick="changeMainImage(1)">
+                </div>
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" onclick="changeMainImage(2)">
+                </div>
+                <div class="small-img-col">
+                    <img src="" width="100%" class="small-img" onclick="changeMainImage(3)">
+                </div>
+            </div>
+        </div>
+        <!-- Left Section END -->
+
+        <!-- Right Section For Product Image Description START -->
+        <div class="single-pro-detail">
+            <h6 id="productCategory"></h6>
+            <h4 id="productName"></h4>
+            <h2 id="productPrice"></h2>
+            <select id="productVersion">
+                <option> Select Version </option>
+                <option> One </option>
+                <option> Two </option>
+                <option> Three </option>
+                <option> Four </option>
+            </select>
+            <input type="number" id="productQty" value="1">
+            <button id="addToCartBtn" class="btn btn-primary" onclick="addToCart()">Add To Cart</button>
+            <h4> Information </h4>
+            <span id="productDescription"></span>
+            
+            <!-- Review Section START -->
+            <div class="review-section">
+                <h5>Reviews</h5>
+                <!-- User Comment Section -->
+                <div class="user-comment-section">
+                    <textarea id="commentInput" placeholder="Add your comment..."></textarea>
+                    <button onclick="addComment()" class="comment-button">Add Comment</button>
+                </div>
+
+                <!-- Display User Comments -->
+                <div id="commentList"></div>
+            </div>
+            <!-- Review Section END -->
+            
+        </div>
+        <!-- Right Section END -->
+        
+        <!-- Continue to Cart Container -->
+        <div id="continueToCartContainer" class="continue-to-cart-container">
+            <button class="btn btn-success" onclick="redirectToCart()">Continue to Cart</button>
+        </div>
+
+        <!-- Back to Products Button -->
+        <button id="backToProductsBtn" class="back-to-products-btn btn btn-secondary" onclick="redirectToProductPage()">Back to Products</button>
+    </div>
+
+    <!-- Product Detail END  -->
+
+    <!-- Cart Table -->
+    <div id="cartItemsContainer" class="container mt-5">
+        <h2>Shopping Cart</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        // Retrieve the selected product and small images from localStorage
+        const selectedProduct = getSelectedProduct();
+        const smallImages = getSmallImagesFromStorage();
+        let cart = getCartFromStorage();
+
+        // Function to get small images from localStorage
+        function getSmallImagesFromStorage() {
+            const smallImages = localStorage.getItem('smallImages');
+            return smallImages ? JSON.parse(smallImages) : null;
+        }
+
+        // Function to change the main image when a small image is clicked
+        function changeMainImage(index) {
+            const mainImg = document.getElementById("MainImg");
+            if (smallImages && smallImages[index]) {
+                mainImg.src = smallImages[index].imagePath;
+            }
+        }
+
+        // Function to display product details on the page
+        function displayProductDetails(product) {
+            // Display product details using DOM manipulation
+            document.getElementById("MainImg").src = product.imagePath;
+
+            // Set small image sources
+            const smallImgElements = document.getElementsByClassName("small-img");
+            for (let i = 0; i < smallImages.length; i++) {
+                if (smallImgElements[i]) {
+                    smallImgElements[i].src = smallImages[i].imagePath;
+                }
+            }
+
+            document.getElementById("productName").innerText = product.name;
+            document.getElementById("productPrice").innerText = product.price + " CAD";
+            document.getElementById("productCategory").innerText = product.gType + "/" + product.name;
+            document.getElementById("productDescription").innerText = product.description;
+        }
+
+        // Check if a product is selected to display its details
+        if (selectedProduct) {
+            displayProductDetails(selectedProduct);
+        } else {
+            console.error('No product selected');
+        }
+
+        // Function to add the selected product to the cart
+        function addToCart() {
+            // Logic to add the product to the cart
+            const quantity = parseInt(document.getElementById("productQty").value);
+            const cartItem = {
+                id: selectedProduct.id,
+                name: selectedProduct.name,
+                imagePath: selectedProduct.imagePath,
+                price: selectedProduct.price,
+                quantity: quantity
+            };
+
+            cart.push(cartItem);
+            saveCartToStorage(); // Save cart to localStorage
+            updateCartTable();
+            $('#continueToCartContainer').show();
+        }
+
+
+        // Function to update the cart table
+        function updateCartTable() {
+            const cartContainer = $('#cartItemsContainer tbody');
+            cartContainer.html('');
+
+            cart.forEach((item) => {
+                const row = `
+                    <tr>
+                        <td><a href="#" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><img src="${item.imagePath}" alt="${item.name}"></td>
+                        <td><h5>${item.name}</h5></td>
+                        <td><h5>${item.price} CAD</h5></td>
+                        <td><input class="w-25 pl-1" value="${item.quantity}" type="number" onchange="updateCartItemQuantity(${item.id}, this.value)"></td>
+                        <td><h5>${item.price * item.quantity} CAD</h5></td>
+                    </tr>
+                `;
+                cartContainer.append(row);
+            });
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCartToStorage(); // Save cart to localStorage
+            updateCartTable();
+        }
+
+        // Function to update the quantity of an item in the cart
+        function updateCartItemQuantity(productId, quantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = parseInt(quantity, 10);
+                saveCartToStorage(); // Save cart to localStorage
+                updateCartTable();
+            }
+        }
+
+        // Function to get the cart from localStorage
+        function getCartFromStorage() {
+            const storedCart = localStorage.getItem('cart');
+            return storedCart ? JSON.parse(storedCart) : [];
+        }
+
+        // Function to save the cart to localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Function to redirect to the cart page
+        function redirectToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        // Function to redirect to the products page
+        function redirectToProductPage() {
+            window.location.href = 'product.html';
+        }
+
+        // Comment
+        // Function to add a comment to local storage and update the comment list
+        function addComment() {
+            const commentInput = document.getElementById("commentInput");
+            const comment = commentInput.value.trim();
+
+            if (comment !== "") {
+                // Retrieve existing comments from local storage or initialize an empty array
+                const existingComments = JSON.parse(sessionStorage.getItem("comments")) || [];
+
+                // Add the new comment to the beginning of the list
+                existingComments.unshift(comment);
+
+                // Save the updated comment list to session storage
+                sessionStorage.setItem("comments", JSON.stringify(existingComments));
+
+                // Display the updated comment list
+                displayComments(existingComments);
+
+                // Clear the comment input
+                commentInput.value = "";
+            }
+        }
+
+        // Function to display comments on the page
+        function displayComments(comments) {
+            const commentList = document.getElementById("commentList");
+            // Clear existing comments
+            commentList.innerHTML = "";
+
+            // Combine static reviews and user comments into a single array
+            const allComments = [
+                { author: "John Watson", message: "Great Game. Nice Graphics. Affordable Price." },
+                { author: "Rebeca Miller", message: "Great Graphics. Worth playing this game." },
+                { author: "Dayahang Rai", message: "Awesome!!!" },
+                ...comments.map(comment => ({ author: "You", message: comment }))
+            ];
+
+            // Display comments in reverse order
+            allComments.reverse().forEach(comment => {
+                const commentItem = document.createElement("div");
+                commentItem.classList.add("user-comment");
+
+                // Use HTML to format "You" as bold
+                const authorHTML = comment.author === "You" ? "<strong>You</strong>" : `<strong>${comment.author}</strong>`;
+
+                commentItem.innerHTML = `${authorHTML}<br>${comment.message}`;
+                commentList.appendChild(commentItem);
+            });
+        }
+
+        // Function to retrieve comments from session storage and display them
+        function displayExistingComments() {
+            const existingComments = JSON.parse(sessionStorage.getItem("comments")) || [];
+            displayComments(existingComments);
+        }
+
+        // Call the function to display existing comments when the page loads
+        displayExistingComments();
+
+        // Handle Enter key press event
+        document.getElementById("commentInput").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevents a newline from being entered
+                addComment(); // Calls the addComment function on Enter key press
+            }
+        });
+    </script>
+</body>
+</html>

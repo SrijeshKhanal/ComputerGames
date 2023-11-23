@@ -1,0 +1,413 @@
+/* Custom CSS for hover effect */
+.product-container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+	height: 264 px;
+	width: 395 px;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.product-con {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.pro {
+	width: 23%;
+	min-width: 250px;
+	padding: 10px 12px;
+	border: 1px solid #cce7d0;
+	cursor: pointer;
+	box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+	margin: 15px 0;
+	transition: 0.2s ease;
+	position: relative;
+}
+
+.pro:hover {
+	box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+}
+
+.pro .img-design{
+	width: 100%;
+	border-radius: 20px;
+}
+
+.pro .descrip{
+	text-align: start;
+	padding: 10px 0;
+	
+}
+
+.pro .descrip h3{
+	color: #606063;
+	font-size: 16px;	
+}
+
+.pro .descrip product-desc{
+	padding-top: 7px;
+	color: #1a1a1a;
+	font-size: 12px;	
+}
+
+.pro .descrip .star {
+	color: rgb(243, 181, 25);
+	font-size: 12px;	
+}
+
+.pro .descrip .pro-price{
+	padding-top: 7px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #088178;		
+}
+
+.pro .cart{
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 50px;
+	background-color: #e8f6ea;
+	font-weight: 500px;
+	color: #088178;
+	border: 1px solid #cce7d0;
+	position: absolute;
+	bottom: 20px;
+	right: 10px;
+}
+
+.product-page-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+
+/* Detail Page Style */
+
+#prodetail{
+	display: flex;
+	margin-top: 20px;
+}
+
+#prodetail .single-pro-image{
+	width: 30%;
+	margin-right: 50px;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.small-img-group{
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.small-img-col{
+	flex-basis: 24%;
+	cursor: pointer;
+}
+
+#prodetail .single-pro-detail{
+	width: 50%;
+	padding-top: 1%;
+}
+
+#prodetail .single-pro-detail h4{
+	padding-top: 40px 0 20px 0;
+}
+
+#prodetail .single-pro-detail h2{
+	font-size: 26px;
+}
+
+#prodetail .single-pro-detail select{
+	display: block;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}
+
+#prodetail .single-pro-detail input{
+	width: 50px;
+	height: 47px;
+	padding-left: 10px;
+	font-size: 16px;
+	margin-right: 10px;
+}
+
+#prodetail .single-pro-detail input:focus{
+	outline: none;
+}
+
+#prodetail .single-pro-detail button{
+	background: #088178;
+	color: #fff;
+}
+
+#prodetail .single-pro-detail span{
+	line-height: 25px;
+}
+
+
+/* Review Section Styles */
+.review-section {
+    border-top: 1px solid #ccc; 
+    padding-top: 20px;
+    margin-top: 50px; 
+}
+
+h5 {
+    margin-bottom: 10px; 
+}
+
+.static-review {
+    margin-bottom: 15px;
+    font-size: 14px; /* Adjusted font size for reviews */
+}
+
+.review-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-message {
+    color: #555;
+}
+
+.user-comment-section {
+    display: flex;
+    flex-direction: column;
+}
+
+#commentInput {
+    resize: none;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 14px; /* Adjusted font size for the comment input */
+}
+
+#commentInput::placeholder {
+    color: #888;
+}
+
+#commentInput:focus {
+    outline: 1px solid #007bff;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.comment-button {
+    width: 15%; 
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s;
+	margin-top:-8px;
+    margin-bottom: 12px; 
+}
+
+.comment-button:hover {
+    background-color: #0056b3;
+}
+
+.continue-to-cart-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Initially the container is hidden*/
+}
+
+.product-page-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+
+
+
+
+/* Pagination Styles */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* Cart Page Style */
+#cart-container table{
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}
+
+#cart-container table thead{
+	font-weight:700;
+}
+
+#cart-container table thead td{
+	background-color: #006633;
+	color: #fff;
+	border: none;
+	padding: 6px 0px;
+}
+
+#cart-container table td{
+	border: 1px solid #b6b3b3;
+	text-align: center;
+}
+
+#cart-container table td:nth-child(1){
+	width: 100px;
+}
+
+#cart-container table td:nth-child(2){
+	width: 200px;
+}
+
+#cart-container table td:nth-child(3){
+	width: 200px;
+}
+
+#cart-container table td:nth-child(4){
+	width: 170px;
+}
+
+#cart-container table td:nth-child(5){
+	width: 170px;
+}
+
+#cart-container table td:nth-child(6){
+	width: 170px;
+}
+
+#cart-container table tbody img{
+	width: 100px;
+	height: 80px;
+	object-fit: cover;
+}
+
+#cart-container table tbody i{
+	color: #FF0000;
+}
+
+.row-lay{
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+#cart-bottom .coupon>div,
+#cart-bottom .total>div{
+	border: 1px solid #b6b3b3;
+}
+
+#cart-bottom .coupon h5,
+#cart-bottom .total h5{
+	background-color: #006633;
+	color: #fff;
+	border: none;
+	padding: 6px 12px;
+	font-weight: 700;
+}
+
+#cart-bottom .coupon p,
+#cart-bottom .coupon input{
+	padding: 0 12px;
+}
+
+#cart-bottom .coupon input{
+	height: 44px;
+}
+
+#cart-bottom .coupon input{
+	margin: 0 0 20px 12px;
+}
+
+#cart-bottom .total div>div{
+	padding: 0 12px;
+	
+}
+
+#cart-bottom .total h6{
+	color: #2a2a2a;	
+}
+
+.second-hr{
+	background: #b8b7b3;
+	width:100px;
+	height: 1px;
+}
+
+#cart-bottom .total {
+	margin: 0 12px 20px 0;	
+}
+
+.proceed-btn {
+	float:right;
+}
+
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    .pro {
+        width: 48%;
+        margin: 5px 0;
+    }
+
+    .col-3 {
+        flex-basis: 48%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    /* Further adjustments for even smaller screens */
+    .pro {
+        width: 100%;
+    }
+
+    .col-3 {
+        flex-basis: 100%;
+    }
+}

@@ -1,0 +1,85 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+#about-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#developer-team {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-member {
+    margin-top: 20px;
+}
+
+.team-member img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+#developer-team {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.team-member {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-member img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.social-icons {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons i {
+    font-size: 20px;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icons i:hover {
+    color: #007bff;
+}
